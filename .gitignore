@@ -1,0 +1,8 @@
+# ignore temp file
+*~
+*.bak
+*.tmp
+*.log
+
+# ignore output directory
+output/
