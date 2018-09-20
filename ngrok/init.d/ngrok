@@ -1,0 +1,36 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          suxch
+# Required-Start:
+# Required-Stop:
+# Default-Start:
+# Default-Stop:
+# Short-Description: ensure Samba daemons are started (nmbd and smbd)
+### END INIT INFO
+
+set -e
+
+# start ngrok
+
+if [ ! -x /usr/bin/ngrok ]; then
+	echo "ngrok is not exist"
+	exit 1
+fi
+
+case $1 in
+	start)
+		/usr/bin/ngrok tcp 22 -log=stdout -log-level=debug -config=/home/ubuntu/.ngrok2/ngrok.yml &
+		;;
+	stop)
+		killall ngrok
+		;;	
+	status)
+		status=0		
+		exit $status
+		;;
+	*)
+		echo "Usage: /etc/init.d/ngrok {start|stop|status}"
+		exit 1
+		;;
+esac

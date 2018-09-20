@@ -1,0 +1,4 @@
+
+sudo cp ngrok /etc/init.d/
+sudo update-rc.d ngrok defaults
+
