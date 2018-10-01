@@ -6,11 +6,24 @@ export TZ
 i=1
 DAY=`date | awk '{print $2}'`
 MONTH=`date | awk '{print $3}'`
-LOG_FILE=/home/pi/temperature/temp_"$DAY"_"$MONTH".log
+LOG_FILE=~/tmp/temperature/temp_"$DAY"_"$MONTH".log
+
+if [ ! -d ~/tmp/temperature ]; then
+	mkdir -p ~/tmp/temperature
+fi
 
 while [ $i -le 1000 ]
 do
-	TEMP=`awk '{printf "%3.1f\n", $1/1000}' /sys/class/thermal/thermal_zone0/temp`
+	if [ -d /sys/class/thermal/thermal_zone0 ]; then
+		TEMP0=`awk '{printf "%3.1f\n", $1/1000}' /sys/class/thermal/thermal_zone0/temp`
+	else
+		TEMP0=""
+	fi
+	if [ -d /sys/class/thermal/thermal_zone1 ]; then
+		TEMP1=`awk '{printf "%3.1f\n", $1/1000}' /sys/class/thermal/thermal_zone1/temp`
+	else
+		TEMP1=""
+	fi
 	DATE=`date | awk '{print $4}'`
 	VAR=`date | awk '{print $2}'`
 	LOAD=`cat /proc/loadavg`
@@ -23,7 +36,11 @@ do
 		LOG_FILE=/home/pi/temperature/temp_"$DAY"_"$MONTH".log
 	fi
 
-	echo $DATE"" ""$TEMP" "$LOAD$MEM >> $LOG_FILE
+	if [ -z $TEMP1 ]; then
+		echo $DATE" "$TEMP0" "$LOAD$MEM >> $LOG_FILE
+	else
+		echo $DATE" "$TEMP0" "$TEMP1" "$LOAD$MEM >> $LOG_FILE
+	fi
 	sleep 1
 done
 
