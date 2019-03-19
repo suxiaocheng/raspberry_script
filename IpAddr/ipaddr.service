@@ -1,0 +1,12 @@
+[Unit]
+Description=Report time in sequence.
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]    
+Type=forking   
+ExecStart=/home/suxiaocheng/IpAddr/start.sh
+ExecStop=/home/suxiaocheng/IpAddr/stop.sh
+PrivateTmp=true   
+   
+[Install]      
+WantedBy=multi-user.target
