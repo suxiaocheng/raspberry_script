@@ -10,9 +10,10 @@ fi
 
 if [ ! -f ${binary_dir}"/"${binary_name} ]; then
 	echo "${binary_name} is not exist"
-	cp ${binary_name} ${binary_dir}"/"${binary_name}
-	chmod 0777 ${binary_dir}"/"${binary_name}
 fi
+
+cp ${binary_name} ${binary_dir}"/"${binary_name}
+chmod 0777 ${binary_dir}"/"${binary_name}
 
 # Add execute environment var
 env_status=`cat ~/.bashrc | grep ${binary_dir}`
