@@ -18,7 +18,7 @@ fi
 
 ctags -R
 if [ $? != 0 ]; then
-	echo "cscope is execute fail"
+	echo "ctagsis execute fail"
 	exit 3
 fi
 
