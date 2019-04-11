@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ngrok="/home/pi/program/ngrok/ngrok"
+ngrok="/usr/bin/ngrok"
 
 if [ -f $ngrok ]; then
         export HOME=/home/pi
