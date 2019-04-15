@@ -20,7 +20,7 @@ if [ -z "${env_status}" ];then
  echo \"　　　　　　　┗━━┓　　　 ┏━┛\"
  echo \"                 ┃　　  ┃\"
  echo \"　　　　　　　　　┃　　  ┃ + + + +\"
- echo \"　　　　　　　　　┃　　　┃　Code is far away from     bug with the animal protecting\"
+ echo \"　　　　　　　　　┃　　　┃　Code is far away from bug with the animal protecting\"
  echo \"　　　　　　　　　┃　　　┃ +              神兽保佑,代码无bug\"
  echo \"　　　　　　　　　┃　　　┃\"
  echo \"　　　　　　　　　┃　　　┃　　+\"
