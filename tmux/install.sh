@@ -45,8 +45,8 @@ fi
 
 tmux_version=`tmux -V|tmux -V|awk '{print $2}'`
 
-version_cmp $tmux_version 2.6
-if [[ "$?" -eq 1 ]]; then
+version_cmp $tmux_version 2.3
+if [[ ! "$?" -eq 2 ]]; then
 	source_binary_name=$binary_name
 else
 	source_binary_name=$binary_name"_2.6"
