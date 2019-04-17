@@ -34,6 +34,18 @@ die() {
     exit 1
 }
 
+TMUX_PROGRAM=`which tmux`
+
+if [ -z $TMUX_PROGRAM ]; then
+	sudo apt install -y tmux
+	if [[ "$?" -ne 0 ]]; then
+		echo "tmux install fail"
+		exit 1
+	else
+		echo "tmux is not exist, install ok"
+	fi
+fi
+
 if [ ! -d "${binary_dir}" ]; then
 	echo "${binary_dir} directory is not exist"
 	mkdir "${binary_dir}"
