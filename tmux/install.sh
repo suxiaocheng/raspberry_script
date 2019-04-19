@@ -34,6 +34,20 @@ die() {
     exit 1
 }
 
+rand(){ 
+        min=$1
+        max=$(($2-$min+1))
+        num=$(cat /dev/urandom | head -n 10 | cksum | awk -F ' ' '{print $1}')
+        echo $(($num%$max+$min))
+}
+
+check_exit_code() {
+        if [ "$?" -ne "0" ]; then
+                echo "program exit unnormal $1"
+                exit 1
+        fi
+}
+
 TMUX_PROGRAM=`which tmux`
 
 if [ -z $TMUX_PROGRAM ]; then
