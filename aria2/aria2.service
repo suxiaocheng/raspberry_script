@@ -4,7 +4,7 @@ After=syslog.target network.target remote-fs.target nss-lookup.target
 
 [Service]    
 Type=forking   
-ExecStart=/usr/bin/aria2c --conf-path=/etc/aria2/aria2.conf -D
+ExecStart=/usr/bin/aria2c --conf-path=/etc/aria2/aria2.conf --daemon=true
 PrivateTmp=true   
    
 [Install]      

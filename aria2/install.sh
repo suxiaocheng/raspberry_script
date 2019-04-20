@@ -31,8 +31,8 @@ die() {
     exit 1
 }
 
-PROGRAM_NAME="aria2c"
-PROGRAM_STATUS=`which ${PROGRAM_NAME}`
+PROGRAM_NAME="aria2"
+PROGRAM_STATUS=`which ${PROGRAM_NAME}"c"`
 
 if [ -z $PROGRAM_STATUS ]; then
 	sudo apt install -y $PROGRAM_NAME
