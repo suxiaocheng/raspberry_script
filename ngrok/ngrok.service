@@ -1,11 +1,13 @@
 [Unit]
-Description=Record temperature Service
+Description=ngrok Service
 After=syslog.target network.target remote-fs.target nss-lookup.target
 
-[Service]    
+[Service]
+User=root
+Group=root
 Type=forking   
-ExecStart=/home/pi/raspberry_script/ngrok/ngrok_start.sh
-ExecStop=/home/pi/raspberry_script/ngrok/ngrok_stop.sh
+ExecStart=/etc/ngrok/ngrok_start.sh
+ExecStop=/etc/ngrok/ngrok_stop.sh
 PrivateTmp=true   
    
 [Install]      
