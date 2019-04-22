@@ -21,7 +21,7 @@ case ${MACHINE} in
 	"x86_64")
 		NGROK_BIN_ZIP="bin/ngrok-stable-linux-amd64.zip"
 		;;
-	"arm")
+	"armv7l")
 		NGROK_BIN_ZIP="bin/ngrok-stable-linux-arm.zip"
 		;;
 	*)
