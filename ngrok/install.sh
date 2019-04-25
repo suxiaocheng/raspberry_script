@@ -58,7 +58,7 @@ check_exit_code "copy service fail"
 
 if [ ! -d ${EXEC_SCRIPT_DIR} ]; then
 	mkdir ${EXEC_SCRIPT_DIR}
-	check_exit_code "mkdir ${check_exit_code} fail"
+	check_exit_code "mkdir ${EXEC_SCRIPT_DIR} fail"
 fi
 
 cp ${START_SCRIPT} ${STOP_SCRIPT} ${EXEC_SCRIPT_DIR}
