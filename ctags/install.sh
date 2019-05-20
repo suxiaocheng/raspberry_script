@@ -1,6 +1,7 @@
 #!/bin/sh
 
 binary_name="update_ctags.sh"
+binary_name_1="update_ctags.sh"
 binary_dir="$HOME""/bin"
 
 
@@ -33,6 +34,8 @@ fi
 
 cp ${binary_name} ${binary_dir}"/"${binary_name}
 chmod 0777 ${binary_dir}"/"${binary_name}
+cp ${binary_name_1} ${binary_dir}"/"${binary_name_1}
+chmod 0777 ${binary_dir}"/"${binary_name_1}
 cp .vimrc ${HOME}"/.vimrc"
 
 # Add execute environment var
