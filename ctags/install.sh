@@ -1,7 +1,7 @@
 #!/bin/sh
 
 binary_name="update_ctags.sh"
-binary_name_1="update_ctags.sh"
+binary_name_1="clear_ctags.sh"
 binary_dir="$HOME""/bin"
 
 
