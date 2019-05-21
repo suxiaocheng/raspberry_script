@@ -1,8 +1,13 @@
 #!/bin/bash
 
 check_str_list[0]="c='clear'"
-check_str_list[1]="p='pwd'"
-check_str_list[2]="t='tmux attach'"
+check_str_list[1]="g='git log --oneline --graph'"
+check_str_list[2]="m='mount|less'"
+check_str_list[3]="s='source ~/.bashrc'"
+check_str_list[4]="t='tmux attach'"
+check_str_list[5]="p='pwd'"
+check_str_list[6]="z='top -d 1'"
+
 
 target_dir="${HOME}/"
 backup_dir="backup/"
