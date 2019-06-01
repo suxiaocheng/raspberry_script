@@ -34,8 +34,8 @@ git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
 map <silent> <F9> /<C-R>=expand("<cword>")<CR><CR>
 map <F10> :NERDTreeToggle<CR>
-map <F11> :vertical resize +10<CR>
-map <F12> :vertical resize -10<CR>
+map <F11> :vertical resize -10<CR>
+map <F12> :vertical resize +10<CR>
 
 " Nerdtree config
 let g:NERDTreeWinPos='right'
