@@ -35,6 +35,9 @@ let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 map <silent> <F8> :TlistToggle<cr>
+map <silent> <F7> /<C-R>=expand("<cword>")<CR><CR>
+map <F5> :w<CR>
+map <F6> :q<CR>
 
 
 if exists('$ITERM_PROFILE')
