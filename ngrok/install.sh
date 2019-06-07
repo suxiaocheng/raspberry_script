@@ -24,6 +24,9 @@ case ${MACHINE} in
 	"armv7l")
 		NGROK_BIN_ZIP="bin/ngrok-stable-linux-arm.zip"
 		;;
+	"armv6l")
+		NGROK_BIN_ZIP="bin/ngrok-stable-linux-arm.zip"
+		;;
 	*)
 		NGROK_BIN_ZIP=""
 		echo "unknow machine type ${MACHINE}"
