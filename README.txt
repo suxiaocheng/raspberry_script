@@ -16,6 +16,10 @@ fi
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
+or use github to download the software
+git clone https://github.com/tpope/vim-pathogen
+
+
 2. Add the follow instruction to the .vimrc
 
 execute pathogen#infect()
