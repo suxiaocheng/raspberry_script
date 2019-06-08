@@ -44,3 +44,13 @@ map <F12> :vertical resize +10<CR>
 " Nerdtree config
 let g:NERDTreeWinPos='right'
 let g:NERDChristmasTree=1
+
+
+
+5. taglist should insert follow shortcut key
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Ctags_Cmd="/usr/bin/ctags"
+
+
+
