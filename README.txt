@@ -9,6 +9,10 @@ if [ -z ${ORIG_PATH} ]; then
 fi
 export PATH=~/bin:$ORIG_PATH
 
+if need to update ps1, please add the following line to the bashrc
+
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}[\t] \[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
 
 [.vimrc]
 1. Install pathogen plugin to easy use vim plugin
