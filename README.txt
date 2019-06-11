@@ -7,7 +7,7 @@ if [ -z ${ORIG_PATH} ]; then
         #echo "ORIG_PATH is not define, redfine it."
         export ORIG_PATH=${PATH}
 fi
-
+export PATH=~/bin:$ORIG_PATH
 
 
 [.vimrc]

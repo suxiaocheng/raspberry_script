@@ -8,6 +8,13 @@ binary_dir="$HOME""/bin"
 CTAGS_PROGRAM=`which ctags`
 CSCOPE_PROGRAM=`which cscope`
 
+check_exit_code() {
+        if [ "$?" -ne "0" ]; then
+                echo "program exit unnormal $1"
+                exit 1
+        fi
+}
+
 if [ -z "$CTAGS_PROGRAM" -a -z "$CSCOPE_PROGRAM" ]; then
 	sudo apt install -y ctags cscope
 	if [[ "$?" -ne "0" ]]; then
@@ -30,6 +37,27 @@ fi
 if [ -f "${binary_dir}/.vimrc" ]; then
 	echo "backup vimrc file"
 	cp ${HOME}/.vimrc ${HOME}/.vimrc.bak
+fi
+
+
+# download vim plugin
+if [ ! -d ~/.vim/autoload ]; then
+	echo "autoload not exist, create it"
+	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+		curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	check_exit_code "install pathogen fail"
+fi
+
+if [ ! -d ~/.vim/bundle/supertab ]; then
+	echo "supertab not exist, create it"
+	git clone https://github.com/ervandew/supertab ~/.vim/bundle
+	check_exit_code "install supertab fail"
+fi
+
+if [ ! -d ~/.vim/bundle/nerdtree ]; then
+	echo "nerdtree not exist, create it"
+	git clone https://github.com/ervandew/nerdtree ~/.vim/bundle
+	check_exit_code "install nerdtree fail"
 fi
 
 cp ${binary_name} ${binary_dir}"/"${binary_name}

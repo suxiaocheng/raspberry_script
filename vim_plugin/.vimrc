@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 set nu
 set hlsearch
 set mouse=
@@ -35,10 +37,15 @@ let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 map <silent> <F8> :TlistToggle<cr>
-map <silent> <F7> /<C-R>=expand("<cword>")<CR><CR>
-map <F5> :w<CR>
-map <F6> :q<CR>
 
+map <silent> <F9> /<C-R>=expand("<cword>")<CR><CR>
+map <F10> :NERDTreeToggle<CR>
+map <F11> :vertical resize -10<CR>
+map <F12> :vertical resize +10<CR>
+
+" Nerdtree config
+let g:NERDTreeWinPos='right'
+let g:NERDChristmasTree=1
 
 if exists('$ITERM_PROFILE')
 	if exists('$TMUX')
