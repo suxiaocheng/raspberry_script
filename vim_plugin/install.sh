@@ -50,13 +50,13 @@ fi
 
 if [ ! -d ~/.vim/bundle/supertab ]; then
 	echo "supertab not exist, create it"
-	git clone https://github.com/ervandew/supertab ~/.vim/bundle
+	git clone https://github.com/ervandew/supertab ~/.vim/bundle/supertab
 	check_exit_code "install supertab fail"
 fi
 
 if [ ! -d ~/.vim/bundle/nerdtree ]; then
 	echo "nerdtree not exist, create it"
-	git clone https://github.com/ervandew/nerdtree ~/.vim/bundle
+	git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 	check_exit_code "install nerdtree fail"
 fi
 
