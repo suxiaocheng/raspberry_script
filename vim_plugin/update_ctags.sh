@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 CSCOPE_FILES=cscope.files
 
@@ -17,7 +17,7 @@ while read line
 do
 	# echo $line
 	ls_status=`ls -l ${line}`
-	#echo "${line} is ${ls_status:0:1}"
+	# echo "${line} is ${ls_status}"
 	if [ "${ls_status:0:1}" = "l" ]; then
 		echo "[INFO] ${line} is a soft link file"
 	else
