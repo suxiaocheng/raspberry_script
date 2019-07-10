@@ -56,3 +56,5 @@ if exists('$ITERM_PROFILE')
 		let &t_EI = "<Esc>]50;CursorShape=0x7"
 	endif
 end
+
+au BufNewFile,BufRead *.hal set filetype=c

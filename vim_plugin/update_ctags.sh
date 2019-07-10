@@ -45,7 +45,7 @@ if [ $? != 0 ]; then
 	exit 2
 fi
 
-ctags -R
+ctags --langmap=C++:+.hal -R
 if [ $? != 0 ]; then
 	echo "[ERR] ctagsis execute fail"
 	exit 3
