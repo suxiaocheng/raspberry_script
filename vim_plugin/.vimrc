@@ -6,7 +6,7 @@ set mouse=
 syntax on
 set nu
 if has("cscope")
-    set csprg=/usr/bin/cscope
+    set csprg=CSCOPE_PROGRAM_WHICH
     set csto=0
     set cst 
     set nocsverb
@@ -33,7 +33,7 @@ nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 filetype plugin indent on
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let Tlist_Ctags_Cmd = 'CTAGS_PROGRAM_WHICH'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 map <silent> <F8> :TlistToggle<cr>

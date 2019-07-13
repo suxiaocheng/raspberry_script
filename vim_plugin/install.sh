@@ -25,6 +25,9 @@ if [ -z "$CTAGS_PROGRAM" -a -z "$CSCOPE_PROGRAM" ]; then
 	fi
 fi
 
+CTAGS_PROGRAM=`which ctags`
+CSCOPE_PROGRAM=`which cscope`
+
 if [ ! -d "${binary_dir}" ]; then
 	echo "${binary_dir} directory is not exist"
 	mkdir "${binary_dir}"
@@ -64,7 +67,14 @@ cp ${binary_name} ${binary_dir}"/"${binary_name}
 chmod 0777 ${binary_dir}"/"${binary_name}
 cp ${binary_name_1} ${binary_dir}"/"${binary_name_1}
 chmod 0777 ${binary_dir}"/"${binary_name_1}
-cp .vimrc ${HOME}"/.vimrc"
+
+if [ -f ~/bin/ctags ]; then
+	sed -e 's/CSCOPE_PROGRAM_WHICH/~\/bin\/cscope/g' \
+		-e 's/CTAGS_PROGRAM_WHICH/~\/bin\/ctags/g' .vimrc > ~/.vimrc
+else 
+	sed -e 's/CSCOPE_PROGRAM_WHICH/\/usr\/bin\/cscope/g' \
+		-e 's/CTAGS_PROGRAM_WHICH/\/usr\/bin\/ctags/g' .vimrc > ~/.vimrc
+fi
 
 # Add execute environment var
 env_status=`cat ~/.bashrc | grep ${binary_dir}`
