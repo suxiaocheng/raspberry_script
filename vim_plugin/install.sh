@@ -3,7 +3,7 @@
 binary_name="update_ctags.sh"
 binary_name_1="clear_ctags.sh"
 binary_dir="$HOME""/bin"
-
+current_date=`date "+%y%m%d_%H%M%S"`
 
 CTAGS_PROGRAM=`which ctags`
 CSCOPE_PROGRAM=`which cscope`
@@ -37,9 +37,9 @@ if [ ! -f ${binary_dir}"/"${binary_name} ]; then
 	echo "${binary_name} is not exist"
 fi
 
-if [ -f "${binary_dir}/.vimrc" ]; then
+if [ -f ${HOME}/.vimrc ]; then
 	echo "backup vimrc file"
-	cp ${HOME}/.vimrc ${HOME}/.vimrc.bak
+	cp ${HOME}/.vimrc ${HOME}/backup/.vimrc.${current_date}
 fi
 
 
