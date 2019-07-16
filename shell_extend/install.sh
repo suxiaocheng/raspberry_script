@@ -9,6 +9,7 @@ check_str_list[5]="t='tmux attach'"
 check_str_list[6]="u='update_ctags.sh'"
 check_str_list[7]="p='pwd'"
 check_str_list[8]="z='top -d 1'"
+check_str_list[9]="cp='rsync -av --info=progress2'"
 
 
 target_dir="${HOME}/"
