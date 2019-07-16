@@ -77,11 +77,15 @@ else
 fi
 
 # Add execute environment var
-env_status=`cat ~/.bashrc | grep ${binary_dir}`
+env_status=`cat ~/.bashrc | grep "${ORIG_PATH}"`
 
 if [ -z "${env_status}" ];then
 	echo "env is not set, create it"
-	echo "export PATH=\$PATH:${binary_dir}" >> ~/.bashrc
+	echo "if [ -z \${ORIG_PATH} ]; then" >> ~/.bashrc
+	echo "        #echo \"ORIG_PATH is not define, redfine it.\"" >> ~/.bashrc
+	echo "        export ORIG_PATH=\${PATH}" >> ~/.bashrc
+	echo "fi" >> ~/.bashrc
+	echo "export PATH=~/bin:\${ORIG_PATH}" >> ~/.bashrc
 fi
 
 echo "sucessfully"
