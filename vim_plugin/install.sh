@@ -80,7 +80,7 @@ else
 fi
 
 # Add execute environment var
-env_status=`cat ~/.bashrc | grep "${ORIG_PATH}"`
+env_status=`cat ~/.bashrc | grep "ORIG_PATH"`
 
 if [ -z "${env_status}" ];then
 	echo "env is not set, create it"
