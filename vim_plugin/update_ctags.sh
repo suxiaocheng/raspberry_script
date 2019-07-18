@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Record the update_taglist to file
+CSCOPE_SCAN_FILE_LIST=~/.cscope_file.list
+CSCOPE_SCAN_FILE_FOUND=0
+CURRENT_PATH=`pwd`
+if [ -f ${CSCOPE_SCAN_FILE_LIST} ]; then
+	while read line
+	do
+		# echo $line
+		if [ "$line" == "${CURRENT_PATH}" ]; then
+			echo "Found match"
+			CSCOPE_SCAN_FILE_FOUND=1
+		fi
+	done < ${CSCOPE_SCAN_FILE_LIST}
+fi
+
 CSCOPE_FILES=cscope.files
 
 rm -rf ${CSCOPE_FILES}
@@ -49,6 +64,12 @@ ctags --langmap=C++:+.hal -R
 if [ $? != 0 ]; then
 	echo "[ERR] ctagsis execute fail"
 	exit 3
+fi
+
+
+if [ "${CSCOPE_SCAN_FILE_FOUND}" == "0" ]; then
+	echo "Add to file ${CSCOPE_SCAN_FILE_LIST}"
+	echo ${CURRENT_PATH} >> ${CSCOPE_SCAN_FILE_LIST}
 fi
 
 echo "[INFO] Sucessfully"
