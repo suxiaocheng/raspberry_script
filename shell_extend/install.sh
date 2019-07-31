@@ -11,6 +11,7 @@ check_str_list[7]="p='pwd'"
 check_str_list[8]="z='top -d 1'"
 check_str_list[9]="cp='rsync -av --info=progress2'"
 
+check_export_enhanced_list[0]="HISTTIMEFORMAT=\"[%Y-%m-%d %H:%M:%S] \""
 
 target_dir="${HOME}/"
 backup_dir="backup/"
@@ -21,6 +22,18 @@ target_file=".bashrc"
 insert_str() {
 	# Add execute environment var
 	env_status=`cat ${target_dir}${target_file} | grep "${1}"`
+
+	if [ -z "${env_status}" ];then
+		echo "${1} is not set, insert it"
+		echo "${2}" >> ${target_dir}${target_file}
+	fi
+}
+
+insert_str_export() {
+	# Add execute environment var
+	compare_str=${1%=*}
+	# echo "compare str is ${compare_str}"
+	env_status=`cat ${target_dir}${target_file} | grep "${compare_str}"`
 
 	if [ -z "${env_status}" ];then
 		echo "${1} is not set, insert it"
@@ -55,6 +68,13 @@ for ((i=0; i< ${#check_str_list[*]}; i++)); do
 	echo ${check_str_list[i]}
 	
 	insert_str "${check_str_list[i]}" "alias ${check_str_list[i]}" 
+done
+
+for ((i=0; i< ${#check_export_enhanced_list[*]}; i++)); do
+	echo ${check_export_enhanced_list[i]}
+
+	
+	insert_str_export "${check_export_enhanced_list[i]}" "export ${check_export_enhanced_list[i]}" 
 done
 
 echo "sucessfully"
