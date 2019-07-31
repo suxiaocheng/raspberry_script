@@ -18,7 +18,7 @@ check_exit_code() {
 
 if [ -z "$CTAGS_PROGRAM" -a -z "$CSCOPE_PROGRAM" ]; then
 	sudo apt install -y ctags cscope
-	if [[ "$?" -ne "0" ]]; then
+	if [ "$?" -ne "0" ]; then
 		echo "ctags install fail"
 		exit 1
 	else
