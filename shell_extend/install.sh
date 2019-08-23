@@ -1,7 +1,7 @@
 #!/bin/bash
 
 check_str_list[0]="c='clear'"
-check_str_list[1]="g='git log --oneline --graph'"
+check_str_list[1]="g='git log --oneline --graph --decorate'"
 check_str_list[2]="i='indent -npro -kr -i8 -ts8 -sob -l80 -ss -ncs'"
 check_str_list[3]="m='mount|less'"
 check_str_list[4]="s='source ~/.bashrc'"
