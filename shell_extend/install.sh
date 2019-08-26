@@ -12,6 +12,7 @@ check_str_list[8]="z='top -d 1'"
 check_str_list[9]="cp='rsync -av --info=progress2'"
 
 check_export_enhanced_list[0]="HISTTIMEFORMAT=\"[%Y-%m-%d %H:%M:%S] \""
+check_export_enhanced_list[1]="INDENTFORMAT=\" -npro -kr -i8 -ts8 -sob -l80 -ss -ncs \""
 
 target_dir="${HOME}/"
 backup_dir="backup/"
