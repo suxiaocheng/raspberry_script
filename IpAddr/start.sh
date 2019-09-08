@@ -3,5 +3,5 @@
 # export PATH=$JAVA_HOME/bin:$PATH  
 TZ='Asia/Shanghai'
 export TZ  
-java -jar /usr/local/jar/IpAddr.jar > /dev/null  &
+java -jar /usr/local/jar/IpAddr.jar  &
 echo $! > /var/run/IpAddr.pid
