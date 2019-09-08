@@ -4,8 +4,8 @@ After=syslog.target network.target remote-fs.target nss-lookup.target
 
 [Service]    
 Type=forking   
-ExecStart=/home/pi/ReportTime/start.sh
-ExecStop=/home/pi/ReportTime/stop.sh
+ExecStart=/home/myuser/ReportTime/start.sh
+ExecStop=/home/myuser/ReportTime/stop.sh
 PrivateTmp=true
 User=myuser
 Group=myuser
