@@ -3,12 +3,10 @@ Description=Report time in sequence.
 After=syslog.target network.target remote-fs.target nss-lookup.target
 
 [Service]    
-Type=forking   
+Type=forking
 ExecStart=/home/myuser/ReportTime/start.sh
 ExecStop=/home/myuser/ReportTime/stop.sh
-PrivateTmp=true
-User=myuser
-Group=myuser
-   
+WorkingDirectory=/home/myuser/
+
 [Install]      
 WantedBy=multi-user.target
