@@ -3,5 +3,10 @@
 # export PATH=$JAVA_HOME/bin:$PATH  
 TZ='Asia/Shanghai'
 export TZ  
-java -jar /home/myuser/ReportTime/ReportTime.jar &
-echo $! > /home/myuser/ReportTime/ReportTime.pid
+if [ -f "/home/myuser/ReportTime/ReportTime.jar" ]; then
+	java -jar /home/myuser/ReportTime/ReportTime.jar &
+	echo $! > /home/myuser/ReportTime/ReportTime.pid
+else 
+	java -jar /root/ReportTime/ReportTime.jar &
+	echo $! > /root/ReportTime/ReportTime.pid
+fi
