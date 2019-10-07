@@ -4,8 +4,8 @@ After=syslog.target network.target remote-fs.target nss-lookup.target
 
 [Service]    
 Type=forking   
-ExecStart=/home/pi/temperature/get_temp_start.sh
-ExecStop=/home/pi/temperature/get_temp_stop.sh
+ExecStart=/etc/temp_monitor/get_temp_start.sh
+ExecStop=/etc/temp_monitor/get_temp_stop.sh
 PrivateTmp=true   
    
 [Install]      

@@ -1,12 +1,18 @@
+#!/bin/bash
+source ../basic/helper.sh
 
-systemctl stop get_temp.service
+SERVICE_NAME="get_temp.service"
+SCRIPT_DIR="/etc/temp_monitor/"
+START_SCRIPT="get_temp_start.sh"
+STOP_SCRIPT="get_temp_stop.sh"
+EXEC_SCRIPT="get_temp.sh"
 
-cp get_temp.service /usr/lib/systemd/system/
-mkdir -p /home/pi/temperature/
-cp get_temp.sh get_temp_start.sh get_temp_stop.sh /home/pi/temperature/
-sync
+stop_service ${SERVICE_NAME}
 
-systemctl enable get_temp.service
-systemctl start get_temp.service
+sudo install -m 0755 -D ${START_SCRIPT} ${SCRIPT_DIR}${START_SCRIPT}
+sudo install -m 0755 -D ${STOP_SCRIPT} ${SCRIPT_DIR}${STOP_SCRIPT}
+sudo install -m 0755 -D ${EXEC_SCRIPT} ${SCRIPT_DIR}${EXEC_SCRIPT}
 
+install_and_start_service ${SERVICE_NAME}
 
+echo "[INFO] sucessfully"

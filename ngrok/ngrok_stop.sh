@@ -1,4 +1,4 @@
-#!/bin/sh  
+#!/bin/bash  
 PID=`ps -aux |grep "ngrok_start.sh"| grep -v "grep" | awk '{print $2}' `
 PID_PROGRAM=`ps -aux |grep "/home/pi/program/ngrok/ngrok "|grep -v "grep" | awk '{print $2}' `
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ../basic/helper.sh
+
 check_str_list[0]="c='clear'"
 check_str_list[1]="g='git log --oneline --graph --decorate'"
 check_str_list[2]="i='indent -npro -kr -i8 -ts8 -sob -l80 -ss -ncs'"
@@ -18,36 +20,6 @@ target_dir="${HOME}/"
 backup_dir="backup/"
 target_file=".bashrc"
 #target_file="test.sh"
-
-
-insert_str() {
-	# Add execute environment var
-	env_status=`cat ${target_dir}${target_file} | grep "${1}"`
-
-	if [ -z "${env_status}" ];then
-		echo "${1} is not set, insert it"
-		echo "${2}" >> ${target_dir}${target_file}
-	fi
-}
-
-insert_str_export() {
-	# Add execute environment var
-	compare_str=${1%=*}
-	# echo "compare str is ${compare_str}"
-	env_status=`cat ${target_dir}${target_file} | grep "${compare_str}"`
-
-	if [ -z "${env_status}" ];then
-		echo "${1} is not set, insert it"
-		echo "${2}" >> ${target_dir}${target_file}
-	fi
-}
-
-check_exit_code() {
-        if [ "$?" -ne "0" ]; then
-                echo "program exit unnormal $1"
-                exit 1
-        fi
-}
 
 current_date=`date "+%y%m%d_%H%M%S"`
 
@@ -73,8 +45,6 @@ done
 
 for ((i=0; i< ${#check_export_enhanced_list[*]}; i++)); do
 	echo ${check_export_enhanced_list[i]}
-
-	
 	insert_str_export "${check_export_enhanced_list[i]}" "export ${check_export_enhanced_list[i]}" 
 done
 

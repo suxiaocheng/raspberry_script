@@ -1,8 +1,0 @@
-ACTION!="add",GOTO="farsight"
-KERNEL=="sd[a-z][0-9]|sd[a-z]",ENV{ID_FS_TYPE}=="vfat",RUN+="/etc/udev/rules.d/mount-usb.sh %k"
-LABEL="farsight"
-
-ACTION!="remove",GOTO="farsight_r"
-SUBSYSTEM!="block",GOTO="farsight_r"
-KERNEL=="sd[a-z][0-9]|sd[a-z]",RUN+="/etc/udev/rules.d/umount-usb.sh %k"
-LABEL="farsight_r"

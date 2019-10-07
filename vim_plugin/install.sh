@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source ../basic/helper.sh
+
 binary_name="update_ctags.sh"
 binary_name_1="clear_ctags.sh"
 binary_name_2="auto_update_ctags.sh"
@@ -8,13 +10,6 @@ current_date=`date "+%y%m%d_%H%M%S"`
 
 CTAGS_PROGRAM=`which ctags`
 CSCOPE_PROGRAM=`which cscope`
-
-check_exit_code() {
-        if [ "$?" -ne "0" ]; then
-                echo "program exit unnormal $1"
-                exit 1
-        fi
-}
 
 if [ -z "$CTAGS_PROGRAM" -a -z "$CSCOPE_PROGRAM" ]; then
 	sudo apt install -y ctags cscope

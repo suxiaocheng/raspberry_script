@@ -13,7 +13,7 @@ if [ "$?" == "0" ]; then
 fi
 
 
-sudo mount -t cifs //10.0.0.1/root ${MOUNT_DIR} -o user="pi",pass="Aa"
+sudo mount -t cifs //10.0.0.1/root ${MOUNT_DIR} -o user="pi",pass="Aa",uid=$(id -u),gid=$(id -u)
 
 if [ "$?" == "0" ]; then
 	echo "[INFO] mount sucessfully"

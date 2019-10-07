@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ../basic/helper.sh
+
 MACHINE=`uname -m`
 TARGET_BIN_DIR="/usr/bin/"
 SERVICE_NAME="ngrok.service"
@@ -8,14 +10,7 @@ EXEC_SCRIPT_DIR="/etc/ngrok"
 START_SCRIPT="ngrok_start.sh"
 STOP_SCRIPT="ngrok_stop.sh"
 
-check_exit_code() {
-        if [ "$?" -ne "0" ]; then
-                echo "program exit unnormal $1"
-                exit 1
-        fi
-}
-
-systemctl stop ${SERVICE_NAME}
+stop_servicei ${SERVICE_NAME}
 
 case ${MACHINE} in
 	"x86_64")
@@ -47,31 +42,13 @@ case ${MACHINE} in
 esac
 check_exit_code "create local token fail"
 
+sudo install -m 0755 -D ${START_SCRIPT} ${EXEC_SCRIPT_DIR}/${START_SCRIPT}
+check_exit_code "copy ${START_SCRIPT} to ${EXEC_SCRIPT_DIR} fail"
+sudo install -m 0755 -D ${STOP_SCRIPT} ${EXEC_SCRIPT_DIR}/${STOP_SCRIPT}
+check_exit_code "copy ${STOP_SCRIPT} to ${EXEC_SCRIPT_DIR} fail"
 
-if [ -d "/usr/lib/systemd/system/" ]; then
-	cp ${SERVICE_NAME} /usr/lib/systemd/system/
-elif [ -d "/etc/systemd/system" ]; then
-        cp ${SERVICE_NAME} /etc/systemd/system/
-else
-        echo "Install service fail"
-        exit 1
-fi
+install_and_start_service ${SERVICE_NAME}
 
-check_exit_code "copy service fail"
-
-if [ ! -d ${EXEC_SCRIPT_DIR} ]; then
-	mkdir ${EXEC_SCRIPT_DIR}
-	check_exit_code "mkdir ${EXEC_SCRIPT_DIR} fail"
-fi
-
-cp ${START_SCRIPT} ${STOP_SCRIPT} ${EXEC_SCRIPT_DIR}
-check_exit_code "copy ${START_SCRIPT} ${STOP_SCRIPT} to ${EXEC_SCRIPT_DIR} fail"
-
-systemctl enable ${SERVICE_NAME}
-sync
-
-systemctl start ${SERVICE_NAME}
-
-echo "sucessfully install"
+echo "[INFO] sucessfully install"
 
 

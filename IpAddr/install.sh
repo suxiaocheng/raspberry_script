@@ -1,21 +1,6 @@
-#!/bin/sh
-
 #!/bin/bash
 
-die() {
-    [[ -n "$1" ]] && echo -e "\nERROR: $1\n" >&2
-    # send die signal to the main process
-    [[ $BASHPID -ne $$ ]] && kill -USR2 $$
-    # we don't need to call cleanup because it's traped on EXIT
-    exit 1
-}
-
-check_exit_code() {
-        if [ "$?" -ne "0" ]; then
-                echo "program exit unnormal $1"
-                exit 1
-        fi  
-}
+source ../basic/helper.sh
 
 EXEC_SCRIPT_DIR="/etc/IpAddr"
 START_SCRIPT="start.sh"
@@ -25,37 +10,22 @@ SERVICE=ipaddr.service
 JAVA_PACKAGE="IpAddr.jar"
 JAVA_PACKAGE_DIR="/usr/local/jar/"
 
+stop_service ${SERVICE}
+
 if [ ! -d "${JAVA_PACKAGE_DIR}" ]; then
-	sudo mkdir -p ${JAVA_PACKAGE_DIR}
+	sudo install -d ${JAVA_PACKAGE_DIR}
 	check_exit_code "create ${JAVA_PACKAGE_DIR} fail"
 fi
 
-sudo cp ${JAVA_PACKAGE} ${JAVA_PACKAGE_DIR}
+sudo install -m 0755 -D ${JAVA_PACKAGE} ${JAVA_PACKAGE_DIR}/${JAVA_PACKAGE}
 check_exit_code "Copy ${JAVA_PACKAGE} fail"
 
-sudo chmod 0755 "${JAVA_PACKAGE_DIR}""${JAVA_PACKAGE}"
-check_exit_code "chmod ${JAVA_PACKAGE} fail"
+sudo install -m 0755 -D ${START_SCRIPT} ${EXEC_SCRIPT_DIR}/${START_SCRIPT}
+check_exit_code "copy ${START_SCRIPT} to ${EXEC_SCRIPT_DIR} fail"
+sudo install -m 0755 -D ${STOP_SCRIPT} ${EXEC_SCRIPT_DIR}/${STOP_SCRIPT}
+check_exit_code "copy ${STOP_SCRIPT} to ${EXEC_SCRIPT_DIR} fail"
 
-if [ -d "/usr/lib/systemd/system/" ]; then
-	sudo cp $SERVICE /lib/systemd/system/
-elif [ -d "/etc/systemd/system" ]; then
-        sudo cp $SERVICE /etc/systemd/system/
-else
-        echo "Install service fail"
-        exit 1
-fi
-check_exit_code "copy service fail"
+install_and_start_service ${SERVICE}
 
-if [ ! -d ${EXEC_SCRIPT_DIR} ]; then
-        sudo mkdir ${EXEC_SCRIPT_DIR}
-        check_exit_code "mkdir ${EXEC_SCRIPT_DIR} fail"
-fi
-
-sudo cp ${START_SCRIPT} ${STOP_SCRIPT} ${EXEC_SCRIPT_DIR}
-check_exit_code "copy ${START_SCRIPT} ${STOP_SCRIPT} to ${EXEC_SCRIPT_DIR} fail"
-
-sudo systemctl enable $SERVICE
-sudo systemctl start $SERVICE
-sync
-
+echo "[INFO] sucesfully"
 
