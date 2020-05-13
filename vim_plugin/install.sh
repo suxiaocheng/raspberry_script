@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source ../basic/helper.sh
 
@@ -35,6 +35,9 @@ fi
 
 if [ -f ${HOME}/.vimrc ]; then
 	echo "backup vimrc file"
+	if [ ! -d ${HOME}/backup ]; then
+		mkdir ${HOME}/backup
+	fi	
 	cp ${HOME}/.vimrc ${HOME}/backup/.vimrc.${current_date}
 fi
 
