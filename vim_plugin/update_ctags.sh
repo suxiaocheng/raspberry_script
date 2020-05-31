@@ -16,11 +16,20 @@ if [ -f ${CSCOPE_SCAN_FILE_LIST} ]; then
 fi
 
 CSCOPE_FILES=cscope.files
+CSCOPE_WITH_IGNORE_FILES=cscope_with_ignore.files
 
 rm -rf ${CSCOPE_FILES}
 
-find . -name "*.[h|c]" >> $CSCOPE_FILES
-find . -name "*.cpp" >> $CSCOPE_FILES
+find . -name "*.[h|c]" | grep -v -v "\/\." >> $CSCOPE_FILES
+find . -name "*.[h|c]" >> $CSCOPE_WITH_IGNORE_FILES
+find . -name "*.cpp" | grep -v -v "\/\." >> $CSCOPE_FILES
+find . -name "*.cpp" >> $CSCOPE_WITH_IGNORE_FILES
+
+diff ${CSCOPE_FILES} ${CSCOPE_WITH_IGNORE_FILES} 2>&1 > /dev/null
+if [ $? -eq 1 ]; then
+	echo "[WARN] cscope has filter unneeded ingore file or directory"
+	diff ${CSCOPE_FILES} ${CSCOPE_WITH_IGNORE_FILES}
+fi
 
 if [ ! -f $CSCOPE_FILES ]; then
 	echo "[ERR] $CSCOPE_FILES is not exist!!!"
