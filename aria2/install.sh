@@ -29,6 +29,11 @@ fi
 sudo cp ${binary_name} ${binary_dir}"/"${binary_name}
 sudo chmod 0777 ${binary_dir}"/"${binary_name}
 
+if [ ! -d ~/aria2 ]; then
+	mkdir ~/aria2
+	cp aria2.session ~/aria2/
+fi
+
 stop_service ${SERVICE_NAME}
 
 install_and_start_service ${SERVICE_NAME}
