@@ -37,10 +37,12 @@ fi
 sudo cp ${binary_name} ${binary_dir}"/"${binary_name}
 sudo chmod 0777 ${binary_dir}"/"${binary_name}
 
-if [ ! -d ~/aria2 ]; then
-	mkdir ~/aria2
-	cp aria2.session ~/aria2/
+if [ ! -d "${HOME}/aria2" ]; then
+	mkdir ${HOME}/aria2
+	cp aria2.session ${HOME}/aria2/
 fi
+
+cp start_webui.sh  ${HOME}/bin/
 
 stop_service ${SERVICE_NAME}
 
