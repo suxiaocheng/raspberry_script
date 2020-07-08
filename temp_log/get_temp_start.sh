@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 /etc/temp_monitor/get_temp.sh &
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 CSCOPE_FILES=cscope.files
 CSCOPE_WITH_IGNORE_FILES=cscope_with_ignore.files
