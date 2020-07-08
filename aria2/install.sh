@@ -16,6 +16,14 @@ if [ -z $PROGRAM_STATUS ]; then
 	fi
 fi
 
+sudo apt install -y nodejs screen
+if [[ "$?" -ne 0 ]]; then
+	echo "nodejs and screen install fail"
+	exit 1
+else
+	echo "nodejs install ok"
+fi
+
 binary_dir="/etc/aria2"
 binary_name="aria2.conf"
 
