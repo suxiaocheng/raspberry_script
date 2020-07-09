@@ -48,4 +48,5 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
 
 
-
+6. set PS1 to except value
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\][\t] \[\033[01;32m\] \u:\w\[\033[00m\]\$ '
