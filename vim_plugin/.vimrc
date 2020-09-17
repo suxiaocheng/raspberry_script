@@ -21,6 +21,8 @@ if has("cscope")
     endif
 endif
  
+map <C-\>1 :set mouse=<CR>
+map <C-\>2 :set mouse=a<CR>
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
