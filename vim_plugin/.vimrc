@@ -32,7 +32,9 @@ nmap <C-\>f :cs find f <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>i :cs find i <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-
+" vim-gitgutter
+map <silent> <F6> :GitGutterLineHighlightsToggle<cr>
+map <silent> <F7> :GitGutterToggle<cr>
 
 filetype plugin indent on
 let Tlist_Ctags_Cmd = 'CTAGS_PROGRAM_WHICH'
@@ -60,3 +62,7 @@ if exists('$ITERM_PROFILE')
 end
 
 au BufNewFile,BufRead *.hal set filetype=c
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-easy-align'
+call plug#end()

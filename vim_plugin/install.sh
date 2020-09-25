@@ -62,6 +62,13 @@ if [ ! -d ~/.vim/bundle/nerdtree ]; then
 	check_exit_code "install nerdtree fail"
 fi
 
+if [ ! -d ~/.vim/pack/airblade/start ]; then
+	mkdir -p ~/.vim/pack/airblade/start
+	cd ~/.vim/pack/airblade/start
+	git clone https://github.com/airblade/vim-gitgutter.git
+	vim -u NONE -c "helptags vim-gitgutter/doc" -c q
+fi
+
 cp ${binary_name} ${binary_dir}"/"${binary_name}
 chmod 0777 ${binary_dir}"/"${binary_name}
 cp ${binary_name_1} ${binary_dir}"/"${binary_name_1}
