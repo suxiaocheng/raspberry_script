@@ -70,6 +70,16 @@ if [ ! -d ~/.vim/pack/airblade/start ]; then
 	popd
 fi
 
+
+if [ ! -d ~/.vim/pack/vim-plug ]; then
+	mkdir -p ~/.vim/pack/vim-plug
+	pushd ~/.vim/pack/vim-plug
+	git clone https://github.com/junegunn/vim-plug ~/.vim/pack/vim-plug
+	cp ~/.vim/pack/vim-plug/plug.vim ~/.vim/autoload
+	popd
+fi
+
+
 cp ${binary_name} ${binary_dir}"/"${binary_name}
 chmod 0777 ${binary_dir}"/"${binary_name}
 cp ${binary_name_1} ${binary_dir}"/"${binary_name_1}
