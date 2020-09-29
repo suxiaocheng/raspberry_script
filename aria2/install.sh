@@ -24,6 +24,18 @@ else
 	echo "nodejs install ok"
 fi
 
+if [ ! -d ~/program/webui-aria2 ]; then
+	if [ ! -d ~/program ]; then
+		mkdir ~/program
+	fi
+	git clone https://github.com/ziahamza/webui-aria2.git ~/program/webui-aria2/
+else
+	pushd ~/program/webui-aria2
+	git fetch
+	git checkout origin/master
+	popd
+fi
+
 binary_dir="/etc/aria2"
 binary_name="aria2.conf"
 
