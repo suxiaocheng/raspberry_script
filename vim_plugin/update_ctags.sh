@@ -18,7 +18,7 @@ fi
 CSCOPE_FILES=cscope.files
 CSCOPE_WITH_IGNORE_FILES=cscope_with_ignore.files
 
-rm -rf ${CSCOPE_FILES}
+rm -rf ${CSCOPE_FILES} ${CSCOPE_WITH_IGNORE_FILES}
 
 find . -name "*.[h|c]" | grep -v -v "\/\." >> $CSCOPE_FILES
 find . -name "*.[h|c]" >> $CSCOPE_WITH_IGNORE_FILES
