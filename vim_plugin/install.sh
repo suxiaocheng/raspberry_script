@@ -44,6 +44,7 @@ fi
 
 # download vim plugin
 if [ ! -d ~/.vim/autoload ]; then
+	sudo apt install curl
 	echo "autoload not exist, create it"
 	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 		curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
