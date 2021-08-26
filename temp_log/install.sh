@@ -1,6 +1,9 @@
 #!/bin/bash
 source ../basic/helper.sh
 
+SED_STRING="s/myuser/${USER}/g"
+sed ${SED_STRING} get_temp.sh.tmpl > get_temp.sh
+
 SERVICE_NAME="get_temp.service"
 SCRIPT_DIR="/etc/temp_monitor/"
 START_SCRIPT="get_temp_start.sh"
@@ -14,5 +17,7 @@ sudo install -m 0755 -D ${STOP_SCRIPT} ${SCRIPT_DIR}${STOP_SCRIPT}
 sudo install -m 0755 -D ${EXEC_SCRIPT} ${SCRIPT_DIR}${EXEC_SCRIPT}
 
 install_and_start_service ${SERVICE_NAME}
+
+rm ${EXEC_SCRIPT}
 
 echo "[INFO] sucessfully"

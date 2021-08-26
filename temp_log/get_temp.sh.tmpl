@@ -2,14 +2,15 @@
 TZ='Asia/Shanghai'
 export TZ
 
+LOG_DIR=/home/myuser/tmp/temperature
 
 i=1
 DAY=`date | awk '{print $2}'`
 MONTH=`date | awk '{print $3}'`
-LOG_FILE=~/tmp/temperature/temp_"$DAY"_"$MONTH".log
+LOG_FILE=${LOG_DIR}/temp_"$DAY"_"$MONTH".log
 
-if [ ! -d ~/tmp/temperature ]; then
-	mkdir -p ~/tmp/temperature
+if [ ! -d ${LOG_DIR} ]; then
+	mkdir -p ${LOG_DIR} 
 fi
 
 while [ $i -le 1000 ]
@@ -33,7 +34,7 @@ do
 		sync
 		DAY=$VAR
 		MONTH=`date | awk '{print $3}'`
-		LOG_FILE=/home/pi/temperature/temp_"$DAY"_"$MONTH".log
+		LOG_FILE=${LOG_DIR}/temp_"$DAY"_"$MONTH".log
 	fi
 
 	if [ -z $TEMP1 ]; then
@@ -41,6 +42,6 @@ do
 	else
 		echo $DATE" "$TEMP0" "$TEMP1" "$LOAD$MEM >> $LOG_FILE
 	fi
-	sleep 1
+	sleep 30
 done
 
