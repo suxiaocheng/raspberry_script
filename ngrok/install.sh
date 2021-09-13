@@ -10,7 +10,7 @@ EXEC_SCRIPT_DIR="/etc/ngrok"
 START_SCRIPT="ngrok_start.sh"
 STOP_SCRIPT="ngrok_stop.sh"
 
-stop_servicei ${SERVICE_NAME}
+stop_service ${SERVICE_NAME}
 
 case ${MACHINE} in
 	"x86_64")
