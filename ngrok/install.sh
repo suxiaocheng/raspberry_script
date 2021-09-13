@@ -38,6 +38,7 @@ case ${MACHINE} in
 		;;
 	"arm")
 		${TARGET_BIN_DIR}"/ngrok" authtoken 88g4iyWLUGU44Dy5DSdis_7P8kh36yuiFtRDiYVayQh
+		# ${TARGET_BIN_DIR}"/ngrok" authtoken 88g4iyWLUGU44Dy5DSdis_7P8kh36yuiFtRDiYVayQh
 		;;
 esac
 check_exit_code "create local token fail"
