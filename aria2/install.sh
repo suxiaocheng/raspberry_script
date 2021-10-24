@@ -5,6 +5,7 @@ source ../basic/helper.sh
 PROGRAM_NAME="aria2"
 PROGRAM_STATUS=`which ${PROGRAM_NAME}"c"`
 SERVICE_NAME="aria2.service"
+SERVICE_NAME_EXT="webui.service"
 
 if [ -z $PROGRAM_STATUS ]; then
 	sudo apt install -y $PROGRAM_NAME
@@ -54,10 +55,20 @@ if [ ! -d "${HOME}/aria2" ]; then
 	cp aria2.session ${HOME}/aria2/
 fi
 
+binary_name="start_webui.sh"
+SED_STRING="s/myuser/${USER}/g"
+echo ""
+sed ${SED_STRING} ${binary_name}.tmpl > ${binary_name}
+sudo chmod 0777 ${binary_name}
 cp start_webui.sh  ${HOME}/bin/
+sudo cp start_webui.sh  /usr/bin/
 
 stop_service ${SERVICE_NAME}
 
 install_and_start_service ${SERVICE_NAME}
+
+stop_service ${SERVICE_NAME_EXT}
+
+install_and_start_service ${SERVICE_NAME_EXT}
 
 echo "[INFO] sucesfully"

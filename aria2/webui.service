@@ -1,0 +1,11 @@
+[Unit]
+Description=Aria2 webui service
+After=syslog.target network.target remote-fs.target nss-lookup.target aria2
+
+[Service]    
+Type=forking   
+ExecStart=/usr/bin/start_webui.sh
+PrivateTmp=true   
+   
+[Install]      
+WantedBy=multi-user.target
