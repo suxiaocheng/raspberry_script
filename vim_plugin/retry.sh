@@ -3,7 +3,7 @@
 count=0
 if [ $# -gt 0 ]; then
 	# echo "[INFO] arg is max than zero"
-	if [ -n $1 ]; then
+	if [ -n "$1" ]; then
 		while [ true ]; do
 			echo "[INFO] Execute command: "$1 " ,times "$count
 			${1}
