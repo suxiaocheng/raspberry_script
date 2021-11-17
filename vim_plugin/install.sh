@@ -5,6 +5,7 @@ source ../basic/helper.sh
 binary_name="update_ctags.sh"
 binary_name_1="clear_ctags.sh"
 binary_name_2="auto_update_ctags.sh"
+binary_name_3="retry.sh"
 binary_dir="$HOME""/bin"
 current_date=`date "+%y%m%d_%H%M%S"`
 
@@ -87,6 +88,8 @@ cp ${binary_name_1} ${binary_dir}"/"${binary_name_1}
 chmod 0777 ${binary_dir}"/"${binary_name_1}
 cp ${binary_name_2} ${binary_dir}"/"${binary_name_2}
 chmod 0777 ${binary_dir}"/"${binary_name_2}
+cp ${binary_name_3} ${binary_dir}"/"${binary_name_3}
+chmod 0777 ${binary_dir}"/"${binary_name_3}
 
 if [ -f ~/bin/ctags ]; then
 	sed -e 's/CSCOPE_PROGRAM_WHICH/~\/bin\/cscope/g' \
