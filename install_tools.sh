@@ -8,3 +8,7 @@ sudo apt-get install -y expect
 
 # install ninja
 sudo apt install -y ninja-build
+
+# install dependent package for qemu
+sudo apt-get install -y libglib2.0-dev
+sudo apt-get install -y libpixman-1-dev
