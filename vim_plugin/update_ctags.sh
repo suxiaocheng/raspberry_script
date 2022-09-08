@@ -1,5 +1,23 @@
 #!/bin/bash
 
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    --kernel)
+    kernel_dir=1
+    shift # past argument
+    ;;
+    -h|--help)
+    echo Usage: $0 [options]
+    echo
+    echo Options,
+    echo --kernel     skip kernel unused dir tools
+    exit 0
+    ;;
+esac
+done
+
 # Record the update_taglist to file
 CSCOPE_SCAN_FILE_LIST=~/.cscope_file.list
 CSCOPE_SCAN_FILE_FOUND=0
@@ -20,9 +38,15 @@ CSCOPE_WITH_IGNORE_FILES=cscope_with_ignore.files
 
 rm -rf ${CSCOPE_FILES} ${CSCOPE_WITH_IGNORE_FILES}
 
-find . -name "*.[h|c]" | grep -v -v "\/\." >> $CSCOPE_FILES
+if [ -n ${kernel_dir} ]; then
+	find . -name "*.[h|c]" | grep -v -v "\/\." | grep -v "\.\/tools">> $CSCOPE_FILES
+	find . -name "*.cpp" | grep -v -v "\/\." | grep -v "\.\/tools">> $CSCOPE_FILES
+else
+	find . -name "*.[h|c]" | grep -v -v "\/\." >> $CSCOPE_FILES
+	find . -name "*.cpp" | grep -v -v "\/\." >> $CSCOPE_FILES
+fi
+
 find . -name "*.[h|c]" >> $CSCOPE_WITH_IGNORE_FILES
-find . -name "*.cpp" | grep -v -v "\/\." >> $CSCOPE_FILES
 find . -name "*.cpp" >> $CSCOPE_WITH_IGNORE_FILES
 
 diff ${CSCOPE_FILES} ${CSCOPE_WITH_IGNORE_FILES} 2>&1 > /dev/null
