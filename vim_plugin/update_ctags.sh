@@ -1,5 +1,7 @@
 #!/bin/bash
 
+kernel_dir=0
+
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -38,7 +40,7 @@ CSCOPE_WITH_IGNORE_FILES=cscope_with_ignore.files
 
 rm -rf ${CSCOPE_FILES} ${CSCOPE_WITH_IGNORE_FILES}
 
-if [ -n ${kernel_dir} ]; then
+if [ ${kernel_dir} -eq 1 ]; then
 	find . -name "*.[h|c]" | grep -v -v "\/\." | grep -v "\.\/tools">> $CSCOPE_FILES
 	find . -name "*.cpp" | grep -v -v "\/\." | grep -v "\.\/tools">> $CSCOPE_FILES
 else
