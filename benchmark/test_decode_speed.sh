@@ -7,11 +7,13 @@ target_type="libx264 mpeg4 msmpeg4 flv libx265"
 file_type=(mp4 avi avi flv mp4)
 
 calc_time() {
-	before=`date +%s`
-	`$1`
-	after=`date +%s`
+	before=`date +%s%N`
+	`time $1`
+	after=`date +%s%N`
 	diff=$((after-before))
-	echo $diff
+	dec=$((diff/1000000000))
+	radix=$((diff%1000000000))
+	echo $dec"."$radix
 }
 
 if [ ! -d ${decode_frame_dir} ]; then
