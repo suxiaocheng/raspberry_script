@@ -22,6 +22,8 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
+	charset utf-8;
+
 	# SSL configuration
 	#
 	# listen 443 ssl default_server;
@@ -57,7 +59,7 @@ server {
 	#	include snippets/fastcgi-php.conf;
 	#
 	#	# With php-fpm (or other unix sockets):
-	#	fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
 	#	# With php-cgi (or other tcp sockets):
 	#	fastcgi_pass 127.0.0.1:9000;
 	#}
@@ -68,29 +70,17 @@ server {
 	#location ~ /\.ht {
 	#	deny all;
 	#}
-	
-	location ^~ /root {
-		alias /;
-		autoindex on;
-		autoindex_exact_size off;
-		autoindex_localtime on;
-	}
+        location ^~ /root {
+                # stub_status on;
+                auth_basic "welcome to su's server";
+		auth_basic_user_file "/etc/nginx/sites-enabled/.auth_file";
 
-	location /camera {
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header Host $http_host;
-		proxy_set_header X-NginX-Proxy true;
-		proxy_pass http://127.0.0.1:8081;
-	}
+                alias /;
+                autoindex on;
+                autoindex_exact_size off;
+                autoindex_localtime on;
+        }
 
-	location /camera_setting {
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header Host $http_host;
-		proxy_set_header X-NginX-Proxy true;
-		proxy_pass http://127.0.0.1:8080;
-	}
 }
 
 
